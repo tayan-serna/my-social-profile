@@ -5,10 +5,10 @@ import ReactCrop from 'react-image-crop';
 // import PropTypes from 'prop-types';
 import { Button, DialogContainer } from 'react-md';
 
-import { getCroppedImg } from '../utils/image-utils';
-import { IMAGE_ALLOW_TYPES } from '../constants';
+import { getCroppedImg } from '../../utils/image-utils';
+import { IMAGE_ALLOW_TYPES } from '../../constants';
 
-import defaultPerson from '../assets/default-person.jpg';
+import defaultPerson from '../../assets/default-person.jpg';
 
 import 'react-image-crop/lib/ReactCrop.scss';
 import './style.scss';

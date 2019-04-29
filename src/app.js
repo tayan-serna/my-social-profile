@@ -4,7 +4,8 @@ import { Grid, Cell } from 'react-md';
 import PropTypes from 'prop-types';
 
 // @components
-import Picture from './picture';
+import Picture from './components/picture';
+import Information from './components/information';
 
 import './app.scss';
 
@@ -17,26 +18,13 @@ const App = (props) => {
         tabletSize={12}
       >
         <Picture />
-        <div className="main-section__name">
-          <span>{props.name}</span>
-        </div>
       </Cell>
       <Cell
         className="information-section"
         size={8}
         tabletSize={12}
       >
-        <div>
-          <span>{props.phone}</span>
-        </div>
-        <div>
-          <span>
-            {props.description}
-          </span>
-        </div>
-        <div>
-          <span>{props.favAvenger}</span>
-        </div>
+        <Information {...props} />
       </Cell>
     </Grid>
   );
@@ -50,7 +38,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  description: ' Lorem ',
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia lectus nulla, et ornare risus malesuada eu. Proin sodales elit id bibendum hendrerit. Vivamus vitae elementum leo. Phasellus imperdiet felis eros, et luctus nulla posuere placerat. Cras aliquam suscipit tempor. Aliquam erat volutpat. Ut vel felis vitae ligula accumsan interdum. In placerat velit ut diam mattis eleifend. Sed mollis tellus libero. Morbi tristique nisl eu eros ullamcorper congue. Etiam euismod iaculis pellentesque. Vestibulum est risus, maximus vestibulum ipsum non, semper venenatis orci. Nullam elementum, mi eu dictum gravida, enim erat condimentum lectus, sed viverra erat leo sit amet lacus. Nulla facilisi.',
   favAvenger: 'Thor',
   name: 'Adrian Serna',
   phone: '+57 3106064463'

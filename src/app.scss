@@ -1,18 +1,46 @@
+@import './assets/variables';
+
 .main-section {
   background-color: gray;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 36px);
   justify-content: center;
-
-  &__name {
-    display: flex;
-    justify-content: center;
-  }
 }
 
 .information-section {
+  display: flex;
+  flex-direction: column;
   height: calc(100vh - 36px);
+
+  &__title {
+    text-align: center;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__phone, &__fav-avenger {
+    color: $color-gray;
+    padding-left: $space-separation;
+
+    span {
+      padding-left: $space-separation;
+    }
+  }
+
+  &__sub-title {
+    color: $color-dark-gray;
+    margin: 0;
+  }
+}
+
+.margin-bottom-1rem {
+  margin-bottom: $space-separation;
 }
 
 @media (max-width: 839px) {
@@ -22,6 +50,13 @@
   }
 
   .information-section {
-    height: calc(60vh - 36px);
+    display: flex;
+    flex-direction: column;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+    }
   }
 }
