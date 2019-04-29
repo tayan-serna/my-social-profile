@@ -1,0 +1,19 @@
+.main-section {
+  background-color: gray;
+  height: calc(100vh - 36px);
+}
+
+.information-section {
+  height: calc(100vh - 36px);
+}
+
+@media (max-width: 839px) {
+  .main-section {
+    background-color: gray;
+    height: 40vh;
+  }
+
+  .information-section {
+    height: calc(60vh - 36px);
+  }
+}
