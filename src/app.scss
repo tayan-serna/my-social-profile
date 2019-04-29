@@ -1,7 +1,7 @@
 @import './assets/variables';
 
 .main-section {
-  background-color: gray;
+  background-color: $color-light-gray;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 36px);
@@ -45,7 +45,6 @@
 
 @media (max-width: 839px) {
   .main-section {
-    background-color: gray;
     height: 40vh;
   }
 

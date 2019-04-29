@@ -24,8 +24,8 @@
       &--dragging {
         border: 2px dashed $color-red;
         border-radius: 50%;
-        height: 150px;
-        width: 150px;
+        height: 200px;
+        width: 200px;
       }
 
       i {
@@ -37,8 +37,8 @@
         border-radius: 50%;
         border: 1px solid $color-light-gray;
         cursor: pointer;
-        height: 150px;
-        width: 150px;
+        height: 200px;
+        width: 200px;
       }
     }
 
