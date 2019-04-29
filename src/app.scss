@@ -1,6 +1,14 @@
 .main-section {
   background-color: gray;
+  display: flex;
+  flex-direction: column;
   height: calc(100vh - 36px);
+  justify-content: center;
+
+  &__name {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .information-section {

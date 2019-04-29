@@ -17,27 +17,43 @@ const App = (props) => {
         tabletSize={12}
       >
         <Picture />
-        {props.name}
+        <div className="main-section__name">
+          <span>{props.name}</span>
+        </div>
       </Cell>
       <Cell
         className="information-section"
         size={8}
         tabletSize={12}
       >
-        - Phone number
-        - Brief description about self.
-        - Favorite avenger
+        <div>
+          <span>{props.phone}</span>
+        </div>
+        <div>
+          <span>
+            {props.description}
+          </span>
+        </div>
+        <div>
+          <span>{props.favAvenger}</span>
+        </div>
       </Cell>
     </Grid>
   );
 }
 
 App.propTypes = {
-  name: PropTypes.string
+  description: PropTypes.string,
+  favAvenger: PropTypes.string,
+  name: PropTypes.string,
+  phone: PropTypes.string
 };
 
 App.defaultProps = {
-  name: 'Adrian Serna'
+  description: ' Lorem ',
+  favAvenger: 'Thor',
+  name: 'Adrian Serna',
+  phone: '+57 3106064463'
 };
 
 export default App;
