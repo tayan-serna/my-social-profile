@@ -6,6 +6,4 @@ export const IMAGE_ALLOW_TYPES = [
     'image/bmp'
 ];
 
-export const PROFILE_ACTIONS = {
-  GET_PROFILE: 'GET_PROFILE'
-};
+export const EDIT_PROFILE = 'EDIT_PROFILE';

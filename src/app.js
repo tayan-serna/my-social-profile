@@ -3,10 +3,14 @@ import React from 'react';
 import { Grid, Cell } from 'react-md';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 // @components
 import Picture from './components/picture';
 import Information from './components/information';
+
+// @actions
+import { editVideoClip } from './actions/profile';
 
 import './app.scss';
 
@@ -32,6 +36,7 @@ const App = (props) => {
 }
 
 App.propTypes = {
+  editVideoClip: PropTypes.func.isRequired,
   profile: PropTypes.shape({
     description: PropTypes.string,
     favAvenger: PropTypes.string,
@@ -44,4 +49,8 @@ const mapStateToProps = ({ profile }) => ({
   profile
 });
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  editVideoClip
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
