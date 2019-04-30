@@ -1,5 +1,5 @@
 // @vendors
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -14,16 +14,10 @@ import {
 
 const Information = (props) => {
   const [profile, setProfile] = useState({
-    description: props.description,
-    favAvenger: props.favAvenger,
-    name: props.name,
-    phone: props.phone
+    ...props.profile
   });
   const [modalProfile, setModalProfile] = useState({
-    description: props.description,
-    favAvenger: props.favAvenger,
-    name: props.name,
-    phone: props.phone
+    ...props.profile
   });
   const [editDesc, setEditDesc] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
@@ -35,11 +29,10 @@ const Information = (props) => {
       setEditFavAvenger(false);
     }
 
-    setProfile({
+    props.editProfile({
       ...profile,
       [propName]: value
     });
-    props.editProfile({...profile});
   };
 
   const handleModalPropChange = (propName, value) => {
@@ -62,6 +55,21 @@ const Information = (props) => {
     });
     setModalOpen(false);
   }
+
+  let ref = useRef({...profile });
+  let hasProfileChanged = JSON.stringify(ref.current) !== JSON.stringify(props.profile);
+
+  useEffect(() => {
+    if (hasProfileChanged) {
+      ref.current = { ...props.profile };
+      setProfile({
+        ...props.profile
+      })
+      setModalProfile({
+        ...props.profile
+      });
+    }
+  })
 
   const actions = [];
     actions.push({ secondary: true, children: 'Cancel', onClick: onCancel });
@@ -228,12 +236,15 @@ const Information = (props) => {
 };
 
 Information.propTypes = {
+  profile: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    favAvenger: PropTypes.string.isRequired,
+    imageSrc: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired
+  }).isRequired,
   avengers: PropTypes.array.isRequired,
-  description: PropTypes.string.isRequired,
-  editProfile: PropTypes.func.isRequired,
-  favAvenger: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired
+  editProfile: PropTypes.func.isRequired
 };
 
 export default Information;
