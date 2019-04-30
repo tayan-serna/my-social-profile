@@ -30,7 +30,10 @@ const App = (props) => {
         size={4}
         tabletSize={12}
       >
-        <Picture />
+        <Picture
+          editProfile={props.editProfile}
+          profile={props.profile}
+        />
       </Cell>
       <Cell
         className="information-section"

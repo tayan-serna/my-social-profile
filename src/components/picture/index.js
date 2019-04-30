@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import ReactCrop from 'react-image-crop';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Button, DialogContainer } from 'react-md';
 
 import { getCroppedImg } from '../../utils/image-utils';
@@ -40,11 +40,18 @@ class Picture extends Component {
 
   onConfirm = () => {
     const { crop, imageFile } = this.state;
-    const Picture = getCroppedImg(imageFile, crop);
+    const { editProfile, profile } = this.props;
+    const imageSrc = getCroppedImg(imageFile, crop);
     this.setState({
         visible: false,
-        imageSrc: Picture
+        imageSrc
     });
+
+    editProfile({
+        ...profile,
+        imageSrc
+    });
+
   }
 
   onCropChange = (crop) => {
@@ -189,6 +196,11 @@ class Picture extends Component {
       </section>
     );
   }
+}
+
+Picture.propTypes = {
+  editProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 }
 
 export default Picture;

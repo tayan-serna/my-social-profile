@@ -16,12 +16,16 @@ const Information = (props) => {
   const [editFavAvenger, setEditFavAvenger] = useState(false);
 
   const handlePropChange = (propName, value) => {
+    if (propName === 'favAvenger') {
+      setEditFavAvenger(false);
+    }
+
     setProfile({
       ...profile,
       [propName]: value
-    })
+    });
+    props.editProfile({...profile});
   };
-
 
   const renderSelectItems = () => props.avengers.map(avenger => avenger.name);
 
@@ -103,9 +107,11 @@ const Information = (props) => {
             </div>
             <div
               className="information-section__fav-avenger"
-              onClick={() => setEditFavAvenger(true)}
             >
-              <h3 className="information-section__sub-title">
+              <h3
+                onClick={() => setEditFavAvenger(true)}
+                className="information-section__sub-title"
+              >
                 My Favorite Avenger
               </h3>
               {
@@ -115,11 +121,13 @@ const Information = (props) => {
                       id="favorite-avenger"
                       label="avengers"
                       className="md-cell"
+                      onChange={(val) => handlePropChange('favAvenger', val)}
                       menuItems={renderSelectItems()}
+                      value={profile.favAvenger}
                     />
                   )
                   : (
-                    <span>
+                    <span onClick={() => setEditFavAvenger(true)} >
                       {profile.favAvenger}
                     </span>
                   )
