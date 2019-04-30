@@ -10,7 +10,7 @@ import Picture from './components/picture';
 import Information from './components/information';
 
 // @actions
-import { editVideoClip } from './actions/profile';
+import { editProfile } from './actions/profile';
 
 import './app.scss';
 
@@ -29,14 +29,17 @@ const App = (props) => {
         size={8}
         tabletSize={12}
       >
-        <Information {...props.profile} />
+        <Information
+          {...props.profile}
+          editProfile={props.editProfile}
+        />
       </Cell>
     </Grid>
   );
 }
 
 App.propTypes = {
-  editVideoClip: PropTypes.func.isRequired,
+  editProfile: PropTypes.func.isRequired,
   profile: PropTypes.shape({
     description: PropTypes.string,
     favAvenger: PropTypes.string,
@@ -50,7 +53,7 @@ const mapStateToProps = ({ profile }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  editVideoClip
+  editProfile
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -2,7 +2,7 @@ import {
   EDIT_PROFILE
 } from '../constants';
 
-export const editVideoClip = (payload) => ({
+export const editProfile = (payload) => ({
   type: EDIT_PROFILE,
   payload
 });

@@ -24,8 +24,17 @@
     height: 100%;
   }
 
+  &__card-title {
+    .md-icon {
+      margin-right: $space-separation-small;
+    }
+  }
+
+  &__description, &__phone, &__fav-avenger {
+    cursor: pointer;
+  }
+
   &__phone, &__fav-avenger {
-    color: $color-gray;
     padding-left: $space-separation;
 
     span {
@@ -55,7 +64,7 @@
     &__container {
       display: flex;
       flex-direction: column;
-      justify-content: start;
+      justify-content: flex-start;
     }
   }
 }
