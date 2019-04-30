@@ -1,5 +1,5 @@
 // @vendors
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Grid, Cell } from 'react-md';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,11 +16,25 @@ import { getAvengers } from './actions/avengers';
 import './app.scss';
 
 const App = (props) => {
+  const [myProfile, setProfile] = useState({
+    description: props.profile.description,
+    favAvenger: props.profile.favAvenger,
+    imageSrc: props.profile.imageSrc,
+    name: props.profile.name,
+    phone: props.profile.phone
+  });
+  
+  const prevProfileRef = useRef();
+
+  
   useEffect(() => {
-    const { avengers, getAvengers } = props;
+    prevProfileRef.current = myProfile;
+    const { avengers, getAvengers, profile } = props;
+
     if (!avengers.length) {
       getAvengers();
     }
+    
   });
 
   return (
@@ -57,6 +71,7 @@ App.propTypes = {
   profile: PropTypes.shape({
     description: PropTypes.string,
     favAvenger: PropTypes.string,
+    imageSrc: PropTypes.string,
     name: PropTypes.string,
     phone: PropTypes.string
   }).isRequired
