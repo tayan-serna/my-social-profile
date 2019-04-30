@@ -10,7 +10,9 @@ export const getAvengers = () => {
       'http://gateway.marvel.com/v1/public/characters',
       {
         params: {
-          apikey: '215da1c06db84967aad1ccf78e28e72c'
+          apikey: '215da1c06db84967aad1ccf78e28e72c',
+          limit: 100,
+          series: 1945 // avergers series Id
         }
       }).then(({
         data: {

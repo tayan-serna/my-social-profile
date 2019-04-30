@@ -39,6 +39,7 @@ const App = (props) => {
       >
         <Information
           {...props.profile}
+          avengers={props.avengers}
           editProfile={props.editProfile}
         />
       </Cell>

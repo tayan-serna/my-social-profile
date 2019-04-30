@@ -2,8 +2,7 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardTitle, CardText } from 'react-md';
-import { FontIcon, TextField } from 'react-md';
-// import React, { useState, useEffect } from 'react';
+import { FontIcon, SelectField , TextField } from 'react-md';
 
 const Information = (props) => {
   const [profile, setProfile] = useState({
@@ -12,16 +11,19 @@ const Information = (props) => {
     name: props.name,
     phone: props.phone
   });
-
   const [editDesc, setEditDesc] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
+  const [editFavAvenger, setEditFavAvenger] = useState(false);
 
   const handlePropChange = (propName, value) => {
     setProfile({
       ...profile,
       [propName]: value
     })
-  }
+  };
+
+
+  const renderSelectItems = () => props.avengers.map(avenger => avenger.name);
 
   return (
     <Fragment>
@@ -45,6 +47,7 @@ const Information = (props) => {
               editDesc
                 ? (
                   <TextField
+                    autoFocus
                     id="description"
                     lineDirection="right"
                     onChange={(val) => handlePropChange('description', val)}
@@ -82,6 +85,7 @@ const Information = (props) => {
                 editPhone
                   ? (
                     <TextField
+                      autoFocus
                       id="phone"
                       lineDirection="right"
                       onChange={(val) => handlePropChange('phone', val)}
@@ -97,13 +101,29 @@ const Information = (props) => {
                   )
               }
             </div>
-            <div className="information-section__fav-avenger">
+            <div
+              className="information-section__fav-avenger"
+              onClick={() => setEditFavAvenger(true)}
+            >
               <h3 className="information-section__sub-title">
                 My Favorite Avenger
               </h3>
-              <span>
-                {profile.favAvenger}
-              </span>
+              {
+                editFavAvenger
+                  ? (
+                    <SelectField
+                      id="favorite-avenger"
+                      label="avengers"
+                      className="md-cell"
+                      menuItems={renderSelectItems()}
+                    />
+                  )
+                  : (
+                    <span>
+                      {profile.favAvenger}
+                    </span>
+                  )
+              }
             </div>
           </CardText>
         </Card>
@@ -113,6 +133,7 @@ const Information = (props) => {
 };
 
 Information.propTypes = {
+  avengers: PropTypes.array.isRequired,
   description: PropTypes.string.isRequired,
   editProfile: PropTypes.func.isRequired,
   favAvenger: PropTypes.string.isRequired,
