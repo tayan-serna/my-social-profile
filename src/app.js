@@ -1,5 +1,5 @@
 // @vendors
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Cell } from 'react-md';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,10 +11,18 @@ import Information from './components/information';
 
 // @actions
 import { editProfile } from './actions/profile';
+import { getAvengers } from './actions/avengers';
 
 import './app.scss';
 
 const App = (props) => {
+  useEffect(() => {
+    const { avengers, getAvengers } = props;
+    if (!avengers.length) {
+      getAvengers();
+    }
+  });
+
   return (
     <Grid className="container">
       <Cell
@@ -39,7 +47,9 @@ const App = (props) => {
 }
 
 App.propTypes = {
+  avengers: PropTypes.array.isRequired,
   editProfile: PropTypes.func.isRequired,
+  getAvengers: PropTypes.func.isRequired,
   profile: PropTypes.shape({
     description: PropTypes.string,
     favAvenger: PropTypes.string,
@@ -48,12 +58,14 @@ App.propTypes = {
   }).isRequired
 };
 
-const mapStateToProps = ({ profile }) => ({
+const mapStateToProps = ({ avengers, profile }) => ({
+  avengers,
   profile
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  editProfile
+  editProfile,
+  getAvengers
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

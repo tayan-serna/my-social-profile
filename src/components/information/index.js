@@ -16,8 +16,6 @@ const Information = (props) => {
   const [editDesc, setEditDesc] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
 
-  console.log(props.editProfile);
-  console.log(profile);
   const handlePropChange = (propName, value) => {
     setProfile({
       ...profile,
