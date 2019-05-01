@@ -7,7 +7,7 @@ import {
 export const getAvengers = () => {
   return dispatch => axios
     .get(
-      'http://gateway.marvel.com/v1/public/characters',
+      'https://gateway.marvel.com/v1/public/characters',
       {
         params: {
           apikey: '215da1c06db84967aad1ccf78e28e72c',
