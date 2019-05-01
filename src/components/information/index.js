@@ -170,7 +170,7 @@ const Information = (props) => {
                   ? (
                     <SelectField
                       id="favorite-avenger"
-                      label="avengers"
+                      label="Favorite Avenger"
                       className="md-cell"
                       onChange={(val) => handlePropChange('favAvenger', val)}
                       menuItems={renderSelectItems()}
@@ -190,31 +190,34 @@ const Information = (props) => {
       <DialogContainer
         actions={actions}
         closeOnEsc={false}
+        dialogClassName="information-section__dialog"
         id="edit-dialog"
-        visible={modalOpen}
-        title="Edit My Profile"
-        onHide={onCancel}
         modal
+        onHide={onCancel}
+        title="Edit My Profile"
+        visible={modalOpen}
+        width={600}
       >
         <form>
           <TextField
             id="edit-name"
+            label="Name"
             lineDirection="right"
             onChange={(val) => handleModalPropChange('name', val)}
             onBlur={() => setEditPhone(false)}
-            rows={2}
             value={modalProfile.name}
           />
           <TextField
             id="edit-phone"
+            label="Phone"
             lineDirection="right"
             onChange={(val) => handleModalPropChange('phone', val)}
             onBlur={() => setEditPhone(false)}
-            rows={2}
             value={modalProfile.phone}
           />
           <TextField
             id="edit-description"
+            label="Description"
             lineDirection="right"
             onChange={(val) => handleModalPropChange('description', val)}
             onBlur={() => setEditDesc(false)}
@@ -223,7 +226,7 @@ const Information = (props) => {
           />
           <SelectField
             id="edit-fav-avenger"
-            label="avengers"
+            label="Favorite Avenger"
             className="md-cell"
             onChange={(val) => handleModalPropChange('favAvenger', val)}
             menuItems={renderSelectItems()}
