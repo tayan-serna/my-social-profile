@@ -17,15 +17,15 @@
 
 
     &-photo {
-      margin-bottom: $space-separation;
       margin-top: $space-separation;
       text-align: center;
 
       &--dragging {
-        border: 2px dashed $color-red;
-        border-radius: 50%;
-        height: 200px;
-        width: 200px;
+        img {
+          border: 3px dashed $color-black !important;
+          height: 197px !important;
+          width: 197px !important;
+        }
       }
 
       i {
@@ -48,7 +48,8 @@
   }
 
   &__error {
-    color: $color-red;
+    background-color: $color-gray-alpha;
+    color: $color-black;
     padding: $space-separation-small;
   }
 }

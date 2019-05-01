@@ -105,45 +105,12 @@ const Information = (props) => {
         </FontIcon>
       </h1>
       <section className="information-section__container">
-        <Card className="information-section__description margin-bottom-1rem">
+        <Card className="information-section__more-about margin-bottom-1rem">
           <CardTitle
             className="information-section__card-title"
             title={(
               <Fragment>
                 <FontIcon>face</FontIcon><span>About Me</span>
-              </Fragment>
-            )}
-          />
-          <CardText
-            onClick={() => setEditDesc(true)}
-          >
-            {
-              editDesc
-                ? (
-                  <TextField
-                    autoFocus
-                    id="description"
-                    lineDirection="right"
-                    onChange={(val) => handlePropChange('description', val)}
-                    onBlur={() => setEditDesc(false)}
-                    rows={2}
-                    value={profile.description}
-                  />
-                )
-                : (
-                  <p>
-                    {profile.description}
-                  </p>
-                )
-            }
-          </CardText>
-        </Card>
-        <Card className="information-section__more-about">
-          <CardTitle
-            className="information-section__card-title"
-            title={(
-              <Fragment>
-                <FontIcon>directions_run</FontIcon><span>More Info About Me</span>
               </Fragment>
             )}
           />
@@ -212,6 +179,39 @@ const Information = (props) => {
                   )
               }
             </div>
+          </CardText>
+        </Card>
+        <Card className="information-section__description">
+          <CardTitle
+            className="information-section__card-title"
+            title={(
+              <Fragment>
+                <FontIcon>directions_run</FontIcon><span>More About Me</span>
+              </Fragment>
+            )}
+          />
+          <CardText
+            onClick={() => setEditDesc(true)}
+          >
+            {
+              editDesc
+                ? (
+                  <TextField
+                    autoFocus
+                    id="description"
+                    lineDirection="right"
+                    onChange={(val) => handlePropChange('description', val)}
+                    onBlur={() => setEditDesc(false)}
+                    rows={2}
+                    value={profile.description}
+                  />
+                )
+                : (
+                  <p>
+                    {profile.description}
+                  </p>
+                )
+            }
           </CardText>
         </Card>
       </section>
