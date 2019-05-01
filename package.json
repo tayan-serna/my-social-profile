@@ -2,6 +2,7 @@
   "name": "my-social-profile",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://tayan-serna.github.io/my-social-profile/",
   "dependencies": {
     "@babel/core": "7.4.3",
     "@babel/plugin-transform-react-jsx-self": "^7.2.0",
