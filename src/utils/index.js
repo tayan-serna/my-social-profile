@@ -20,3 +20,8 @@ export const getCroppedImg = (image, crop) => {
 
   return canvas.toDataURL('image/jpg');
 };
+
+export const validatePhone = (phone, blur) => {
+  const numRegex = blur ? /^(\+\d{1,3})?\s?\d{10}$/g : /^(\+\d{1,3})?\s?\d{1,10}$/g;
+  return numRegex.test(phone);
+};

@@ -12,12 +12,18 @@ import {
   TextField
 } from 'react-md';
 
+import { validatePhone } from '../../utils';
+
 const Information = (props) => {
   const [profile, setProfile] = useState({
     ...props.profile
   });
   const [modalProfile, setModalProfile] = useState({
     ...props.profile
+  });
+  const [modalValidations, setModalValidations] = useState({
+    isNameValid: true,
+    isPhoneValid: true
   });
   const [editDesc, setEditDesc] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
@@ -54,7 +60,11 @@ const Information = (props) => {
       ...profile
     });
     setModalOpen(false);
-  }
+  };
+
+  /* const validateModalProps = () => {
+    modalValidations
+  }; */
 
   let ref = useRef({...profile });
   let hasProfileChanged = JSON.stringify(ref.current) !== JSON.stringify(props.profile);
@@ -69,11 +79,23 @@ const Information = (props) => {
         ...props.profile
       });
     }
-  })
+  }, [hasProfileChanged, props.profile])
+
 
   const actions = [];
     actions.push({ secondary: true, children: 'Cancel', onClick: onCancel });
-    actions.push(<Button flat primary onClick={() => onConfirm()}>Confirm</Button>);
+    actions.push(
+      <Button
+        disabled={
+          !modalValidations.isNameValid || !modalValidations.isPhoneValid
+        }
+        flat
+        onClick={() => onConfirm()}
+        primary
+      >
+        Confirm
+      </Button>
+    );
 
   return (
     <Fragment>
@@ -145,7 +167,6 @@ const Information = (props) => {
                       lineDirection="right"
                       onChange={(val) => handlePropChange('phone', val)}
                       onBlur={() => setEditPhone(false)}
-                      rows={2}
                       value={profile.phone}
                     />
                   )
@@ -169,11 +190,11 @@ const Information = (props) => {
                 editFavAvenger
                   ? (
                     <SelectField
+                      className="information-section__select-field"
                       id="favorite-avenger"
                       label="Favorite Avenger"
-                      className="md-cell"
-                      onChange={(val) => handlePropChange('favAvenger', val)}
                       menuItems={renderSelectItems()}
+                      onChange={(val) => handlePropChange('favAvenger', val)}
                       value={profile.favAvenger}
                     />
                   )
@@ -203,17 +224,35 @@ const Information = (props) => {
             id="edit-name"
             label="Name"
             lineDirection="right"
-            onChange={(val) => handleModalPropChange('name', val)}
-            onBlur={() => setEditPhone(false)}
+            onChange={(val) => {
+              setModalValidations({
+                ...modalValidations,
+                isNameValid: val.length >= 1
+              });
+              handleModalPropChange('name', val);
+            }}
             value={modalProfile.name}
+            error={!modalValidations.isNameValid}
+            errorText="Name should not be empty"
           />
           <TextField
             id="edit-phone"
             label="Phone"
             lineDirection="right"
-            onChange={(val) => handleModalPropChange('phone', val)}
-            onBlur={() => setEditPhone(false)}
+            onChange={(val) => {
+              setModalValidations({
+                ...modalValidations,
+                isPhoneValid: validatePhone(val)
+              });
+              handleModalPropChange('phone', val);
+            }}
+            onBlur={() => setModalValidations({
+              ...modalValidations,
+              isPhoneValid: validatePhone(modalProfile.phone, true)
+            })}
             value={modalProfile.phone}
+            error={!modalValidations.isPhoneValid}
+            errorText="Invalid format"
           />
           <TextField
             id="edit-description"
