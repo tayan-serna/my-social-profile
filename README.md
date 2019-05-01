@@ -7,10 +7,10 @@ You must follow the next instructions to fully succed the installation of the pr
   - `~/my-social-profile: yarn install` or `~/my-social-profile: npm install`
   - `~/my-social-profile: yarn start` or `~/my-social-profile: yarn start`
 
-If there will appear an error about `node-sass` you have to make sure that you have a `node` version that `node-sass` support, here there is a link to take care of it [https://github.com/sass/node-sass](node-sass)
+If there will appear an error about `node-sass` you have to make sure that you have a `node` version that `node-sass` support, here there is a link to take care of it [node-sass page](https://github.com/sass/node-sass)
 
 ## Execution
-If you don't want to download and install all this app, you just have to go to the [https://tayan-serna.github.io/my-social-profile/](live example page), where is a functional version of the project
+If you don't want to download and install all this app, you just have to go to the [live example page](https://tayan-serna.github.io/my-social-profile/), where is a functional version of the project
 
 ## Available Scripts
 
