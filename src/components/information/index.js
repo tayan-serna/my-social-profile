@@ -12,7 +12,7 @@ import {
   TextField
 } from 'react-md';
 
-import { validatePhone } from '../../utils';
+import { validatePhone } from '../../utils/utils';
 
 const Information = (props) => {
   const [profile, setProfile] = useState({
@@ -23,8 +23,9 @@ const Information = (props) => {
   });
   const [modalValidations, setModalValidations] = useState({
     isNameValid: true,
-    isPhoneValid: true
+    isModalPhoneValid: true
   });
+  const [isPhoneValid, setIsPhoneValid] = useState(true);
   const [editDesc, setEditDesc] = useState(false);
   const [editPhone, setEditPhone] = useState(false);
   const [editFavAvenger, setEditFavAvenger] = useState(false);
@@ -62,10 +63,6 @@ const Information = (props) => {
     setModalOpen(false);
   };
 
-  /* const validateModalProps = () => {
-    modalValidations
-  }; */
-
   let ref = useRef({...profile });
   let hasProfileChanged = JSON.stringify(ref.current) !== JSON.stringify(props.profile);
 
@@ -87,7 +84,7 @@ const Information = (props) => {
     actions.push(
       <Button
         disabled={
-          !modalValidations.isNameValid || !modalValidations.isPhoneValid
+          !modalValidations.isNameValid || !modalValidations.isModalPhoneValid
         }
         flat
         onClick={() => onConfirm()}
@@ -163,10 +160,20 @@ const Information = (props) => {
                   ? (
                     <TextField
                       autoFocus
+                      error={!isPhoneValid}
+                      errorText="invalid format"
                       id="phone"
                       lineDirection="right"
-                      onChange={(val) => handlePropChange('phone', val)}
-                      onBlur={() => setEditPhone(false)}
+                      onChange={(val) => {
+                        setIsPhoneValid(validatePhone(val));
+                        handlePropChange('phone', val)
+                      }}
+                      onBlur={() => {
+                        setIsPhoneValid(validatePhone(profile.phone, true));
+                        if (validatePhone(profile.phone, true)) {
+                          setEditPhone(false)
+                        }
+                      }}
                       value={profile.phone}
                     />
                   )
@@ -242,16 +249,16 @@ const Information = (props) => {
             onChange={(val) => {
               setModalValidations({
                 ...modalValidations,
-                isPhoneValid: validatePhone(val)
+                isModalPhoneValid: validatePhone(val)
               });
               handleModalPropChange('phone', val);
             }}
             onBlur={() => setModalValidations({
               ...modalValidations,
-              isPhoneValid: validatePhone(modalProfile.phone, true)
+              isModalPhoneValid: validatePhone(modalProfile.phone, true)
             })}
             value={modalProfile.phone}
-            error={!modalValidations.isPhoneValid}
+            error={!modalValidations.isModalPhoneValid}
             errorText="Invalid format"
           />
           <TextField

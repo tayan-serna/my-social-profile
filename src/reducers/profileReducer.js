@@ -1,6 +1,6 @@
 import { EDIT_PROFILE } from '../constants';
 
-const initialState = {
+export const initialState = {
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia lectus nulla, et ornare risus malesuada eu. Proin sodales elit id bibendum hendrerit. Vivamus vitae elementum leo. Phasellus imperdiet felis eros, et luctus nulla posuere placerat. Cras aliquam suscipit tempor. Aliquam erat volutpat. Ut vel felis vitae ligula accumsan interdum.',
   favAvenger: 'Captain America',
   name: 'Adrian Serna',
